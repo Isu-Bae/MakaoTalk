@@ -19,6 +19,7 @@
                    Orientation="Horizontal"
                    HorizontalOptions="FillAndExpand"
                    BackgroundColor="#dadada">
+                <SearchBar></SearchBar>
         <Label Text="Header"
                HorizontalTextAlignment="Center"
                HorizontalOptions="FillAndExpand"
