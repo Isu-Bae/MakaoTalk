@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MakoTalk.Models.ViewModel
+namespace MakoTalk.Models.Model
 {
     public enum GroupTypes
     {
