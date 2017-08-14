@@ -1,6 +1,4 @@
 ﻿using ClientXamarin.Views;
-using MakaoTalk.Models.ViewModel;
-using MakaoTalk.Services.Message;
 using System;
 using System.Collections.Generic;
 using System.Linq;

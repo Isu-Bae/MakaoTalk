@@ -1,7 +1,7 @@
 ﻿using MakaoTalk.Database;
+using MakaoTalk.Models.Model;
 using MakaoTalk.Models.ViewModel;
 using MakaoTalk.Utilities.Helper;
-using MakoTalk.Models.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;

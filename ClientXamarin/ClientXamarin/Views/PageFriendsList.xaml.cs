@@ -122,20 +122,6 @@ namespace ClientXamarin.Views
             }
 
             Items = list;
-
-            //Items = new ObservableCollection<Item>(new[]
-            //{
-            //    new Item { Text = "박보검", Detail = "Africa & Asia"
-            //    , Image = new ImageCell() { ImageSource = ImageSource.FromFile(@"c:\123.jpg") } },
-            //    new Item { Text = "송중기", Detail = "Central & South America"
-            //    , Image = new ImageCell() { ImageSource = ImageSource.FromFile(@"c:\user.png") }},
-            //    new Item { Text = "차은우", Detail = "Central & East Africa"
-            //    , Image = new ImageCell() { ImageSource = ImageSource.FromFile(@"c:\user.png") }},
-            //    new Item { Text = "현빈", Detail = "Central & South America"
-            //    , Image = new ImageCell() { ImageSource = ImageSource.FromFile(@"c:\user.png") }},
-            //    new Item { Text = "전강태", Detail= "Brazil"
-            //    , Image = new ImageCell() { ImageSource = ImageSource.FromFile(@"c:\user.png") }}
-            //});
         }
 
         #endregion
