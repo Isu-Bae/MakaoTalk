@@ -78,57 +78,64 @@ namespace MakaoTalk.Database
         #region Private Functions
         private IEnumerable<T> Select<T>(string query = "", string tableName = "") where T : DomainModel
         {
-            var list = new List<DomainModel>();
-            var table = (T)Activator.CreateInstance(typeof(T));
-
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = _connection;
-
-            if (string.IsNullOrEmpty(query))
+            try
             {
-                if (string.IsNullOrEmpty(tableName))
-                    cmd.CommandText = $"select * from {table.GetType().Name}";
-                else
-                    cmd.CommandText = $"select * from {tableName}";
-            }
-            else
-                cmd.CommandText = query;
+                var list = new List<DomainModel>();
+                var table = (T)Activator.CreateInstance(typeof(T));
 
-            var reader = cmd.ExecuteReader();
-            var data = new DataTable();
-            data.Load(reader);
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = _connection;
 
-            foreach (DataRow row in data.Rows)
-            {
-                var item = (T)Activator.CreateInstance(typeof(T));
-
-                foreach (DataColumn col in data.Columns)
+                if (string.IsNullOrEmpty(query))
                 {
-                    foreach (var pty in item.GetType().GetProperties())
+                    if (string.IsNullOrEmpty(tableName))
+                        cmd.CommandText = $"select * from {table.GetType().Name}";
+                    else
+                        cmd.CommandText = $"select * from {tableName}";
+                }
+                else
+                    cmd.CommandText = query;
+
+                var reader = cmd.ExecuteReader();
+                var data = new DataTable();
+                data.Load(reader);
+
+                foreach (DataRow row in data.Rows)
+                {
+                    var item = (T)Activator.CreateInstance(typeof(T));
+
+                    foreach (DataColumn col in data.Columns)
                     {
-                        var valueType = Nullable.GetUnderlyingType(pty.PropertyType) ?? pty.PropertyType;
-
-                        if (pty.Name.Equals(col.ColumnName))
+                        foreach (var pty in item.GetType().GetProperties())
                         {
-                            pty.SetValue(item, DBNull.Value.Equals(row[col]) ? null : Convert.ChangeType(row[col], valueType), null);
-                        }
+                            var valueType = Nullable.GetUnderlyingType(pty.PropertyType) ?? pty.PropertyType;
 
-                        var attr = (SqlAttribute[])pty.GetCustomAttributes(typeof(SqlAttribute), false);
-
-                        if (attr != null && attr.Length > 0)
-                        {
-                            if (attr[0].FieldName.Equals(col.ColumnName))
+                            if (pty.Name.Equals(col.ColumnName))
                             {
                                 pty.SetValue(item, DBNull.Value.Equals(row[col]) ? null : Convert.ChangeType(row[col], valueType), null);
                             }
+
+                            var attr = (SqlAttribute[])pty.GetCustomAttributes(typeof(SqlAttribute), false);
+
+                            if (attr != null && attr.Length > 0)
+                            {
+                                if (attr[0].FieldName.Equals(col.ColumnName))
+                                {
+                                    pty.SetValue(item, DBNull.Value.Equals(row[col]) ? null : Convert.ChangeType(row[col], valueType), null);
+                                }
+                            }
+
                         }
-
                     }
+                    list.Add(item);
                 }
-                list.Add(item);
-            }
 
-            return list.OfType<T>();
+                return list.OfType<T>();
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
         }
         #endregion
     }

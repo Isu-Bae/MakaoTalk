@@ -22,7 +22,7 @@ namespace MakaoTalk.Database
 
         protected override string GetConnectionString()
         {
-            return $@"Data Source=localhost;Initial Catalog=MakaoTalk;Persist Security Info=True;User ID=sa;Password={ GetUserPW() };MultipleActiveResultSets=True;Connect Timeout=30;Application Name=MakaoTalk";
+            return $@"Data Source=192.168.245.56;Initial Catalog=MakaoTalk;Persist Security Info=True;User ID=sa;Password={ GetUserPW() };MultipleActiveResultSets=True;Connect Timeout=30;Application Name=MakaoTalk";
         }
 
         private string GetUserPW()

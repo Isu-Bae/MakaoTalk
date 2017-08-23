@@ -18,7 +18,7 @@ namespace ClientXamarin.Views
     {
         public PageFriendsList()
         {
-			InitializeComponent ();
+			InitializeComponent();
             BindingContext = new PageFriendsListViewModel();
         }
 

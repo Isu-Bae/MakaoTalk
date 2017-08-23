@@ -53,6 +53,27 @@
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <LangVersion>default</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>..\..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="FormsViewGroup, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Forms.2.3.4.224\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
@@ -122,6 +143,10 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\MakaoTalk.Database\MakaoTalk.Database.csproj">
+      <Project>{8469f199-0082-4dbe-a328-20758cb7bbe8}</Project>
+      <Name>MakaoTalk.Database</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\MakaoTalk.Models\MakaoTalk.Models.csproj">
       <Project>{C0E98B5B-5637-442F-9704-D414ACCA4AD9}</Project>
       <Name>MakaoTalk.Models</Name>
@@ -129,6 +154,10 @@
     <ProjectReference Include="..\..\MakaoTalk.Services\MakaoTalk.Services.csproj">
       <Project>{21d09088-d530-450f-a61b-9290b7936b95}</Project>
       <Name>MakaoTalk.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MakaoTalk.Utilities\MakaoTalk.Utilities.csproj">
+      <Project>{c27d06ad-3674-4d2f-95e3-83684883110b}</Project>
+      <Name>MakaoTalk.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="..\ClientXamarin\ClientXamarin.projitems" Label="Shared" Condition="Exists('..\ClientXamarin\ClientXamarin.projitems')" />
