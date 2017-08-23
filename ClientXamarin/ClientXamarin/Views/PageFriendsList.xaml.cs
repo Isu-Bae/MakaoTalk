@@ -42,7 +42,7 @@ namespace ClientXamarin.Views
     class PageFriendsListViewModel : INotifyPropertyChanged
     {
         public ObservableCollection<Item> Items { get; set; }
-        public ObservableCollection<Grouping<string, Item>> ItemsGrouped { get; }
+        public ObservableCollection<Grouping<string, Item>> ItemsGrouped { get; set; }
 
         public PageFriendsListViewModel()
         {
@@ -57,11 +57,15 @@ namespace ClientXamarin.Views
 
             RefreshDataCommand = new Command(
                 async () => await RefreshData());
+
+            SearchTextCommand = new Command(
+                async(x) => await ExecuteSearchItemsCommand(x));
         }
 
         public ICommand RefreshDataCommand { get; }
+        public ICommand SearchTextCommand { get; }
 
-        async Task RefreshData()
+        async Task RefreshData(bool isAll = true)
         {
             IsBusy = true;
             //Load Data Here
@@ -69,6 +73,48 @@ namespace ClientXamarin.Views
             await Task.Delay(1000);
 
             IsBusy = false;
+        }
+
+        async Task ExecuteSearchItemsCommand(object param)
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            try
+            {
+                if (param == null) return;
+                var sorted = from item in Items
+                             where item.Text.Contains(param.ToString())
+                             orderby item.Text
+                             group item by item.Text[0].ToString() into itemGroup
+                             select new Grouping<string, Item>(itemGroup.Key, itemGroup);
+
+                ItemsGrouped = new ObservableCollection<Grouping<string, Item>>(sorted);
+                
+                await RefreshData(false);
+
+                //Items = new ObservableCollection<Item>(Items.Where(x => x.Text.Contains(param.ToString())).ToList());
+                //ItemsGrouped = new ObservableCollection<Grouping<string, Item>>(Items.Where(x => x.Text.Contains(param.ToString())));
+                ////var searched = from item in Items
+                ////               orderby item.Text
+                ////               group item by item.Text[0].ToString() into itemGroup
+                ////               select new Grouping<string, Item>(itemGroup.Key, itemGroup);
+
+                ////ItemsGrouped = new ObservableCollection<Grouping<string, Item>>(searched);
+
+                ////ItemsGrouped = new ObservableCollection<Grouping<string, Item>>(ItemsGrouped.Where(x => x.Text.Contains(param.ToString())).ToList());
+                OnPropertyChanged("ItemsGrouped");
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
         bool busy;
@@ -110,8 +156,10 @@ namespace ClientXamarin.Views
         }
 
         #region Private Functions
-        private void LoadData()
+        private void LoadData(bool isAll = true)
         {
+            if (!isAll) return;
+
             var list = new ObservableCollection<Item>();
 
             IMessageService service = new MessageService();

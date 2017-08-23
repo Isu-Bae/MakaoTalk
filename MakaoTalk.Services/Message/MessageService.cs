@@ -15,6 +15,7 @@ namespace MakaoTalk.Services.Message
     {
         void SaveMessage(ModelChat message);
 
+        // TODO: 질문!! userID 는 내 id 를 넣는건가요?(즉.. 앱 실행시킨 폰 주인)
         IEnumerable<ModelUser> GetFriends(string userID);
     }
 

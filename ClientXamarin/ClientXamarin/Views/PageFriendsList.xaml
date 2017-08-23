@@ -20,6 +20,7 @@
                    Orientation="Horizontal"
                    HorizontalOptions="FillAndExpand"
                    BackgroundColor="#dadada">
+                <SearchBar x:Name="SearchBar" SearchCommand="{Binding SearchTextCommand}" SearchCommandParameter="{Binding Text, Source={Reference Name=SearchBar}}"></SearchBar>
                 <Label Text="Header"
                HorizontalTextAlignment="Center"
                HorizontalOptions="FillAndExpand"
