@@ -2,19 +2,23 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ClientXamarin.Views.PageChattingRoom">
-  <ListView ItemsSource="{Binding Items}"
-            ItemTapped="Handle_ItemTapped"
-            CachingStrategy="RecycleElement">
-            
-    <!--Built in Cells-->
-    <ListView.ItemTemplate>
-      <DataTemplate>
-        <TextCell />
-      </DataTemplate>
-    </ListView.ItemTemplate>
-    
-    <!--Custom View Cells-->
-    <!--
+  <StackLayout Padding="10"
+          HorizontalOptions="FillAndExpand"
+          BackgroundColor="#dadada">
+    <Label Text ="{Binding Title}" />
+    <ListView ItemsSource="{Binding Items}"
+              ItemTapped="Handle_ItemTapped"
+              CachingStrategy="RecycleElement">
+
+      <!--Built in Cells-->
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <TextCell />
+        </DataTemplate>
+      </ListView.ItemTemplate>
+
+      <!--Custom View Cells-->
+      <!--
     <ListView.ItemTemplate>
       <DataTemplate>
         <ViewCell>
@@ -28,5 +32,9 @@
       </DataTemplate>
     </ListView.ItemTemplate>
     -->
-  </ListView>
+
+    </ListView>
+    <Editor BackgroundColor="#fff" HeightRequest="50" />
+  </StackLayout>
+  
 </ContentPage>

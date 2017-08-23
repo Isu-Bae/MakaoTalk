@@ -30,14 +30,15 @@ namespace ClientXamarin.Views
             if (e.SelectedItem == null)
                 return;
 
-            await DisplayAlert("Selected", e.SelectedItem.ToString(), "OK");
+            App.Current.MainPage = new NavigationPage(new PageChattingRoom(e.SelectedItem.ToString()));
+            //await new Task(() => { App.Current.MainPage = new PageChattingRoom(); });
 
             //Deselect Item
             ((ListView)sender).SelectedItem = null;
         }
     }
 
-
+    
 
     class PageFriendsListViewModel : INotifyPropertyChanged
     {

@@ -132,7 +132,7 @@ namespace MakaoTalk.Database
 
                 return list.OfType<T>();
             }
-            catch(Exception ex)
+            catch
             {
                 return null;
             }

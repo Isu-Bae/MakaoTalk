@@ -13,9 +13,11 @@ namespace ClientXamarin.Views
     public partial class PageChattingRoom : ContentPage
     {
         public ObservableCollection<string> Items { get; set; }
+        public string Title { get; set; }
 
-        public PageChattingRoom()
+        public PageChattingRoom(string title)
         {
+            Title = title;
             InitializeComponent();
 
             Items = new ObservableCollection<string>
@@ -32,13 +34,13 @@ namespace ClientXamarin.Views
 
         async void Handle_ItemTapped(object sender, SelectedItemChangedEventArgs e)
         {
-            if (e.SelectedItem == null)
-                return;
+        //    if (e.SelectedItem == null)
+        //        return;
 
-            await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
+        //    await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
 
-            //Deselect Item
-            ((ListView)sender).SelectedItem = null;
+        //    //Deselect Item
+        //    ((ListView)sender).SelectedItem = null;
         }
     }
 }
