@@ -163,12 +163,18 @@ namespace ClientXamarin.Views
 
             var list = new ObservableCollection<Item>();
 
-            IMessageService service = new MessageService();
+            //IMessageService service = new MessageService();
 
-            foreach(var item in service.GetFriends("01071270202"))
-            {
-                list.Add(new Item { Text = item.UserName, Detail = item.FriendID });
-            }
+            //foreach(var item in service.GetFriends("01071270202"))
+            //{
+            //    list.Add(new Item { Text = item.UserName, Detail = item.FriendID });
+            //}
+
+            list.Add(new Item { Text = "박보검", Detail = "010-1387-1237" });
+            list.Add(new Item { Text = "송중기", Detail = "010-1387-1237" });
+            list.Add(new Item { Text = "송시윤", Detail = "010-1387-1237" });
+            list.Add(new Item { Text = "배이수", Detail = "010-1387-1237" });
+            list.Add(new Item { Text = "최강", Detail = "010-1387-1237" });
 
             Items = list;
         }

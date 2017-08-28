@@ -20,27 +20,18 @@ namespace ClientXamarin.Views
             Title = title;
             InitializeComponent();
 
-            Items = new ObservableCollection<string>
-            {
-                "Item 1",
-                "Item 2",
-                "Item 3",
-                "Item 4",
-                "Item 5"
-            };
+            Items = new ObservableCollection<string>();
 
             BindingContext = this;
+
+            MessageInput.Completed += MessageInput_Completed;
         }
 
-        async void Handle_ItemTapped(object sender, SelectedItemChangedEventArgs e)
+        private void MessageInput_Completed(object sender, EventArgs e)
         {
-        //    if (e.SelectedItem == null)
-        //        return;
-
-        //    await DisplayAlert("Item Tapped", "An item was tapped.", "OK");
-
-        //    //Deselect Item
-        //    ((ListView)sender).SelectedItem = null;
+            Items.Add(MessageInput.Text);
+            MessageInput.Text = string.Empty;
+            OnPropertyChanged("Items");
         }
     }
 }

@@ -6,35 +6,11 @@
           HorizontalOptions="FillAndExpand"
           BackgroundColor="#dadada">
     <Label Text ="{Binding Title}" />
-    <ListView ItemsSource="{Binding Items}"
-              ItemTapped="Handle_ItemTapped"
+    <ListView x:Name="MessageList" ItemsSource="{Binding Items}"
               CachingStrategy="RecycleElement">
 
-      <!--Built in Cells-->
-      <ListView.ItemTemplate>
-        <DataTemplate>
-          <TextCell />
-        </DataTemplate>
-      </ListView.ItemTemplate>
-
-      <!--Custom View Cells-->
-      <!--
-    <ListView.ItemTemplate>
-      <DataTemplate>
-        <ViewCell>
-          <StackLayout>
-            <Label Text="{Binding Text}" 
-                   Style="{DynamicResource ListItemTextStyle}" />
-            <Label Text="{Binding Detail}" 
-                   Style="{DynamicResource ListItemDetailTextStyle}"/>
-          </StackLayout>
-        </ViewCell>
-      </DataTemplate>
-    </ListView.ItemTemplate>
-    -->
-
     </ListView>
-    <Editor BackgroundColor="#fff" HeightRequest="50" />
+    <Editor x:Name="MessageInput" BackgroundColor="#fff" HeightRequest="50" />
   </StackLayout>
   
 </ContentPage>
